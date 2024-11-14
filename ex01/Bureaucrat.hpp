@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 14:06:43 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/14 16:50:29 by codespace        ###   ########.fr       */
+/*   Created: 2024/11/14 16:40:02 by codespace         #+#    #+#             */
+/*   Updated: 2024/11/14 17:59:59 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUREAUCRAT_HPP
 
 # include <iostream>
+# include "Form.hpp"
 # define HIGHEST 1
 # define LOWEST 150
 
@@ -21,7 +22,7 @@ class Bureaucrat
 {
     private:
         std::string _name;
-        int _grade;
+        int         _grade;
 
     public:
         Bureaucrat();
@@ -31,10 +32,10 @@ class Bureaucrat
         Bureaucrat  &operator=(const Bureaucrat &other); //Copy assignment operator
         
         std::string getName() const;
-        int getGrade() const;
-        
-        void    incrementGrade(int value);
-        void    decrementGrade(int value);
+        int         getGrade() const; 
+        void        incrementGrade(int value);
+        void        decrementGrade(int value);
+        void        signForm(Form const &form);
 
         class GradeTooHighException : public std::exception
         {
