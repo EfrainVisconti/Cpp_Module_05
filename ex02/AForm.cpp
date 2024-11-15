@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:45:13 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 19:41:38 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 20:34:28 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void    AForm::execute(Bureaucrat const &executor) const
 {
     if (this->_isSigned == false)
         throw AForm::IsNotSignedException();
-    if (bureaucrat.getGrade() > this->_execGrade)
+    if (executor.getGrade() > this->_execGrade)
         throw AForm::GradeTooLowException();
     this->doExecute();
 }
@@ -105,10 +105,10 @@ const char  *AForm::IsAlreadySignedException::what() const throw()
 
 const char  *AForm::IsNotSignedException::what() const throw()
 {
-    return "It is not signed!"
+    return "It is not signed!";
 }
 
 std::ostream	&operator<<(std::ostream &str, AForm const &form)
 {
-	return (str << form.getName() << ", form isSigned: " << form.getIsSigned() << ", signGrade: " << form.getSignGrade() << ", execGrade: " << form.getExecGrade());
+	return (str << form.getName() << " form, isSigned: " << form.getIsSigned() << ", signGrade: " << form.getSignGrade() << ", execGrade: " << form.getExecGrade());
 }

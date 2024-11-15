@@ -6,79 +6,70 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:40:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 17:17:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 21:22:42 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 const std::string RESET = "\033[0m";
 const std::string GREEN = "\033[32m";
 
 int main()
 {
-    std::cout << std::endl << GREEN << "-----Testing Form created with grade too low-----" << RESET << std::endl;
-    try
-    {
-        Form f1("f1", LOWEST + 1, LOWEST);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    std::cout << std::endl << GREEN << "-----Testing Form created with grade too high-----" << RESET << std::endl;
-    try
-    {
-        Form f1("f1", HIGHEST, HIGHEST - 1);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    std::cout << std::endl << GREEN << "-----Testing Bureaucrats and Forms interacting-----" << RESET << std::endl;
-    Bureaucrat jon("jon", LOWEST);
-    Form f1("f1", LOWEST, LOWEST);
-    Form f2("f2", HIGHEST, HIGHEST);
+    std::cout << std::endl << GREEN << "-----Constructors-----" << RESET << std::endl;
+    ShrubberyCreationForm shrubbery("home");
+	RobotomyRequestForm robotomy("Robot");
+	PresidentialPardonForm pardon("Ford");
+	Bureaucrat jon("Jon", LOWEST);
+	Bureaucrat jim("Jim", HIGHEST);
+  
+    std::cout << std::endl << GREEN << "-----Testing Bureaucrats and AForms interacting-----" << RESET << std::endl;
     std::cout << jon << std::endl;
-    std::cout << f1 << std::endl;
-    std::cout << f2 << std::endl;
-    std::cout << std::endl << GREEN << "-----Jon signing f1 (valid grades)-----" << RESET << std::endl;
+    std::cout << jim << std::endl;
+    std::cout << shrubbery << std::endl;
+    std::cout << robotomy << std::endl;
+    std::cout << pardon << std::endl;
+    std::cout << std::endl << GREEN << "-----Valid signing, invalid execution-----" << RESET << std::endl;
     try
     {
-        jon.signForm(f1);
+        jim.signForm(robotomy);
+        robotomy.execute(jon);
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
+    std::cout << robotomy << std::endl;
+    std::cout << std::endl << GREEN << "-----Invalid signing, invalid execution-----" << RESET << std::endl;
     try
     {
-        f1.beSigned(jon);
+        jon.signForm(pardon);
+        pardon.execute(jon);
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-    std::cout << f1 << std::endl;
-    std::cout << std::endl << GREEN << "-----Jon signing f2 (invalid grades)-----" << RESET << std::endl;
+    std::cout << pardon << std::endl;
+    std::cout << std::endl << GREEN << "-----Valid signing, valid execution-----" << RESET << std::endl;
     try
     {
-        jon.signForm(f2);
+        jim.signForm(shrubbery);
+        jim.signForm(robotomy);
+        jim.signForm(pardon);
+        shrubbery.execute(jim);
+        robotomy.execute(jim);
+        jim.executeForm(pardon);
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-    try
-    {
-        f2.beSigned(jon);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    std::cout << f2 << std::endl;
     std::cout << std::endl << GREEN << "-----Destructors-----" << RESET << std::endl;
     return 0;
 }

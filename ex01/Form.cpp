@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:45:13 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 15:17:22 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 20:34:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ const char  *Form::IsAlreadySignedException::what() const throw()
 
 std::ostream	&operator<<(std::ostream &str, Form const &form)
 {
-	return (str << form.getName() << ", form isSigned: " << form.getIsSigned() << ", signGrade: " << form.getSignGrade() << ", execGrade: " << form.getExecGrade());
+	return (str << form.getName() << " form, isSigned: " << form.getIsSigned() << ", signGrade: " << form.getSignGrade() << ", execGrade: " << form.getExecGrade());
 }

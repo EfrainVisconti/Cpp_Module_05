@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:18:56 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 20:17:42 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 20:56:26 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void    ShrubberyCreationForm::doExecute() const
 		throw std::runtime_error("Error opening outfile");
     outfile << "               ,@@@@@@@," << std::endl;
     outfile << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
-    outfile << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\88/8o" << std::endl;
-    outfile << "   ,%&\%&&%&&%,@@@\@@@/@@@88\88888/88'" << std::endl;
-    outfile << "   %&&%&%&/%&&%@@\@@/ /@@@88888\88888'" << std::endl;
-    outfile << "   %&&%/ %&%%&&@@\ V /@@' `88\8 `/88'" << std::endl;
-    outfile << "   `&%\ ` /%&'    |.|        \ '|8'" << std::endl;
+    outfile << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
+    outfile << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
+    outfile << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
+    outfile << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
+    outfile << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
     outfile << "       |o|        | |         | |" << std::endl;
     outfile << "       |.|        | |         | |" << std::endl;
-    outfile << "    \\/ ._\//_/__/  ,\_//__\\/.  \_//__/_" << std::endl;
+    outfile << "    \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_" << std::endl;
     outfile.close();
     std::cout << this->getName() << " created " << filename << " with a nice tree" << std::endl;
 }
