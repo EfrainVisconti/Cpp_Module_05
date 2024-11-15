@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:39:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/14 18:14:09 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 15:06:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,17 @@ const char  *Bureaucrat::GradeTooLowException::what() const throw()
     return "Grade is too low!";
 }
 
-void    Bureaucrat::signForm(Form const &form)
+void    Bureaucrat::signForm(Form &form)
 {
-    if (form.getIsSigned() == true)
+    try
     {
-        std::cout << this->_name << " couldn't sign " << form.getName() << " because is already signed" << std::endl;
-        return ;
+        form.beSigned(*this);
+        std::cout << this->_name << " signed " << form.getName() << std::endl;
     }
-    if (this->_grade > form.getSignGrade())
+    catch (std::exception &e)
     {
-        std::cout << this->_name << " couldn't sign " << form.getName() << " because his grade is too low" << std::endl;
-        throw Bureaucrat::GradeTooLowException();
+        std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
     }
-    std::cout << this->_name << " signed " << form.getName() << std::endl;
 }
 
 std::ostream	&operator<<(std::ostream &str, Bureaucrat const &bureaucrat)

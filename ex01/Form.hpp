@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:45:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/14 17:18:26 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 14:54:52 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define HIGHEST 1
 # define LOWEST 150
 
+class Bureaucrat;
+
 class Form
 {
     private:
@@ -27,17 +29,17 @@ class Form
         int const           _execGrade;
 
     public:
-        Form():
-        Form(std::string const name, int const signGrade, int const execGrade);
+        Form();
+        Form(std::string name, int signGrade, int execGrade);
         Form(Form const &other);
         ~Form();
         Form    &operator=(const Form &other);
         
         std::string getName() const;
-        int         getIsSigned() const;
+        bool         getIsSigned() const;
         int         getSignGrade() const;
         int         getExecGrade() const;
-        void        beSigned(Bureaucrat const &bureaucrat);
+        void        beSigned(Bureaucrat &bureaucrat);
 
         class GradeTooHighException : public std::exception
         {
@@ -46,6 +48,12 @@ class Form
         };
 
         class GradeTooLowException : public std::exception
+        {
+            public:
+                char const  *what() const throw();
+        };
+
+        class IsAlreadySignedException : public std::exception
         {
             public:
                 char const  *what() const throw();

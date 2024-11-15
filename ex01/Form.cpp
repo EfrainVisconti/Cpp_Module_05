@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:45:13 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/14 17:53:48 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 15:17:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Form::Form() : _name("default"), _isSigned(false), _signGrade(LOWEST), _execGrad
     std::cout << "Default Form constructor called" << std::endl;
 }
 
-Form::Form(std::string const name, int const signGrade, int const execGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
+Form::Form(std::string name, int signGrade, int execGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _execGrade(execGrade)
 {
     std::cout << "Form constructor called: " << this->_name << std::endl;
     if (signGrade < HIGHEST || execGrade < HIGHEST)
@@ -65,13 +65,10 @@ int Form::getExecGrade() const
     return this->_execGrade;
 }
 
-void    Form::beSigned(Bureaucrat const &bureaucrat)
+void    Form::beSigned(Bureaucrat &bureaucrat)
 {
     if (this->_isSigned == true)
-    {
-        std::cout << "Form " << this->_name << " is already signed" << std::endl;
-        return ;
-    }
+        throw Form::IsAlreadySignedException();
     if (bureaucrat.getGrade() > this->_signGrade)
         throw Form::GradeTooLowException();
     this->_isSigned = true;
@@ -87,7 +84,12 @@ const char  *Form::GradeTooLowException::what() const throw()
     return "Grade is too low!";
 }
 
+const char  *Form::IsAlreadySignedException::what() const throw()
+{
+    return "It's already signed!";
+}
+
 std::ostream	&operator<<(std::ostream &str, Form const &form)
 {
-	return (str << form.getName() << ", form, isSigned: " << form.getIsSigned() << ", signGrade: " << form.getSignGrade() << ", execGrade: " << form.getExecGrade());
+	return (str << form.getName() << ", form isSigned: " << form.getIsSigned() << ", signGrade: " << form.getSignGrade() << ", execGrade: " << form.getExecGrade());
 }
