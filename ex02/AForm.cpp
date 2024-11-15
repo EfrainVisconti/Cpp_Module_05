@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:45:13 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 18:57:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 19:41:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void    AForm::execute(Bureaucrat const &executor) const
         throw AForm::IsNotSignedException();
     if (bureaucrat.getGrade() > this->_execGrade)
         throw AForm::GradeTooLowException();
-    this->beExecute();
+    this->doExecute();
 }
 
 const char  *AForm::GradeTooHighException::what() const throw()

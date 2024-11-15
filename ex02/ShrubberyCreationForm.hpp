@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:19:08 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 19:06:48 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 20:07:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ShrubberyCreationForm : public AForm
         ~ShrubberyCreationForm();
         ShrubberyCreationForm   &operator=(const ShrubberyCreationForm &other);
 
-        void    beExecute() const;
+        void    doExecute() const;
 };
 
 #endif

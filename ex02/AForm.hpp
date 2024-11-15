@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:45:17 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 18:48:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 19:41:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ class AForm
         void            setIsSigned();
         void            beSigned(Bureaucrat &bureaucrat);
         void            execute(Bureaucrat const &executor) const;
-        virtual void    beExecute() const = 0;
+        virtual void    doExecute() const = 0;
 
         class GradeTooHighException : public std::exception
         {

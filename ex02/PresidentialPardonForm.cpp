@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:21:29 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 19:27:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 19:41:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ PresidentialPardonForm  &PresidentialPardonForm::operator=(const PresidentialPar
     return *this;
 }
 
-void    PresidentialPardonForm::beExecute() const
+void    PresidentialPardonForm::doExecute() const
 {
     std::cout << this->_target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

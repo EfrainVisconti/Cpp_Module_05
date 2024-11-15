@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 17:21:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 19:05:54 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/15 19:41:54 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class PresidentialPardonForm : public AForm
         ~PresidentialPardonForm();
         PresidentialPardonForm  &operator=(const PresidentialPardonForm &other);
 
-        void    beExecute() const;
+        void    doExecute() const;
 };
 
 #endif
