@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 21:33:51 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 21:52:50 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/17 00:40:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,39 @@ Intern  &Intern::operator=(const Intern &other)
     return *this;
 }
 
+AForm   *Intern::createRobotomyRequestForm(std::string target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+AForm   *Intern::createPresidentialPardonForm(std::string target)
+{
+    return new PresidentialPardonForm(target);
+}
+
+AForm   *Intern::createShrubberyCreationForm(std::string target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
 AForm   *Intern::makeForm(std::string const formName, std::string const formTarget)
 {
-    try
+    std::string validForms[SIZE] = {"robotomy request",
+                                "presidential pardon",
+                                "shrubbery creation"};
+    AForm *(Intern::*functs[SIZE])(std::string) = {&Intern::createRobotomyRequestForm,
+                                            &Intern::createPresidentialPardonForm,
+                                            &Intern::createShrubberyCreationForm};
+
+    for (int i = 0; i < SIZE; i++)
     {
-        
-        std::cout << "Intern creates " << formName << std::endl;
+        if (validForms[i] == formName)
+        {
+            std::cout << "Intern creates " << validForms[i] << std::endl;
+            return (this->*functs[i])(formTarget);
+        }
     }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    throw Intern::InvalidFormNameException(); 
 }
 
 const char  *Intern::InvalidFormNameException::what() const throw()

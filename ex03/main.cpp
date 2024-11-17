@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:40:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 21:33:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/17 01:26:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,32 @@ const std::string GREEN = "\033[32m";
 
 int main()
 {
-    std::cout << std::endl << GREEN << "-----Constructors-----" << RESET << std::endl;
-    ShrubberyCreationForm shrubbery("home");
-	RobotomyRequestForm robotomy("Robot");
-	PresidentialPardonForm pardon("Ford");
-	Bureaucrat jon("Jon", LOWEST);
-	Bureaucrat jim("Jim", HIGHEST);
-  
-    std::cout << std::endl << GREEN << "-----Testing Bureaucrats and AForms interacting-----" << RESET << std::endl;
-    std::cout << jon << std::endl;
-    std::cout << jim << std::endl;
-    std::cout << shrubbery << std::endl;
-    std::cout << robotomy << std::endl;
-    std::cout << pardon << std::endl;
-    std::cout << std::endl << GREEN << "-----Valid signing, invalid execution-----" << RESET << std::endl;
+    Intern someRandomIntern;
+    Bureaucrat jon("Jon", HIGHEST);
+    AForm *f1;
+    AForm *f2;
+    AForm *f3;
+
+    std::cout << std::endl << GREEN << "-----Testing Intern-----" << RESET << std::endl;
     try
     {
-        jim.signForm(robotomy);
-        robotomy.execute(jon);
+        f1 = someRandomIntern.makeForm("robotomy request", "Bender");
+        f2 = someRandomIntern.makeForm("presidential pardon", "Bender");
+        f3 = someRandomIntern.makeForm("shrubbery creation", "Bender");
+        f1->beSigned(jon);
+        f2->beSigned(jon);
+        f3->beSigned(jon);
+        f1->execute(jon);
+        f2->execute(jon);
+        f3->execute(jon);
+        f1 = someRandomIntern.makeForm("invalid form", "Bender");
     }
     catch (std::exception &e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
+        delete f1;
+        delete f2;
+        delete f3;
     }
-    std::cout << robotomy << std::endl;
-    std::cout << std::endl << GREEN << "-----Invalid signing, invalid execution-----" << RESET << std::endl;
-    try
-    {
-        jon.signForm(pardon);
-        pardon.execute(jon);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    std::cout << pardon << std::endl;
-    std::cout << std::endl << GREEN << "-----Valid signing, valid execution-----" << RESET << std::endl;
-    try
-    {
-        jim.signForm(shrubbery);
-        jim.signForm(robotomy);
-        jim.signForm(pardon);
-        shrubbery.execute(jim);
-        robotomy.execute(jim);
-        jim.executeForm(pardon);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-    std::cout << std::endl << GREEN << "-----Destructors-----" << RESET << std::endl;
     return 0;
 }
