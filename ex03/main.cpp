@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:40:21 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/17 01:26:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/17 01:29:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int main()
     catch (std::exception &e)
     {
         std::cout << "Exception: " << e.what() << std::endl;
-        delete f1;
-        delete f2;
-        delete f3;
     }
+    delete f1;
+    delete f2;
+    delete f3;
     return 0;
 }
